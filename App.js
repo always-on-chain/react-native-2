@@ -4,15 +4,24 @@ import { createBottomTabNavigator } from 'react-navigation';
 
 import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
+import MapScreen from './screens/MapScreen';
+import DeckScreen from './screens/DeckScreen';
 
 export default class App extends React.Component {
   render() {
     const MainNavigator = createBottomTabNavigator({
-      Welcome: { screen: WelcomeScreen },
-      Auth: { screen: AuthScreen },
+      welcome: { screen: WelcomeScreen },
+      auth: { screen: AuthScreen },
+      main: {
+        screen: createBottomTabNavigator({
+          map: { screen: MapScreen },
+          deck: { screen: DeckScreen },
+        })
+      }
     });
 
-    return ( <MainNavigator style={styles.container} />
+    return ( 
+      <MainNavigator style={styles.container} />
     );
   }
 }
