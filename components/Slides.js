@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView} from 'react-native';
+import { View, Text, ScrollView, Dimensions } from 'react-native';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 class Slides extends Component {
   renderSlides() {
-    console.log('data', this.props.data)
     return this.props.data.map((slide) => {
       return (
-        <View style={styles.slideStyle} key={slide.text}>
+        <View key={slide.text} 
+              style={[styles.slideStyle, {backgroundColor: slide.color}]}
+        >
           <Text style={styles.textStyle}>{slide.text}</Text>
         </View>
       );
@@ -16,8 +20,8 @@ class Slides extends Component {
   render() {
     return (
       <ScrollView
-        horizontal={true}
-        // style={{ flex: 1 }}
+        horizontal
+        pagingEnabled
       >
         {this.renderSlides()}
       </ScrollView>
@@ -27,12 +31,16 @@ class Slides extends Component {
 
 const styles = {
   slideStyle: {
-    // flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center'
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+    padding: 10,
   },
   textStyle: {
-    fontSize: 30
+    fontSize: 30,
+    color: 'white',
   }
 }
 
