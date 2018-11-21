@@ -1,11 +1,10 @@
-import { AsyncStore } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { Facebook } from 'expo';
 
 import {
   FACEBOOK_LOGIN_SUCCESS,
   FACEBOOK_LOGIN_FAIL,
 } from './types';
-import { AsyncStorage } from '../../../Library/Caches/typescript/2.6/node_modules/@types/react-native';
 
 // How to use AsyncStorage:
 // AsyncStorage.setItem('fb_token', token);
