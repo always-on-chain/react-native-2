@@ -8,6 +8,16 @@ class AuthScreen extends Component {
     this.props.facebookLogin();
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.onAuthComplete(nextProps);
+  }
+
+  onAuthComplete(props) {
+    if (props.token) {
+      this.props.navigation.navigate('map');
+    }
+  }
+
   render() {
     return (
       <View>
@@ -20,4 +30,8 @@ class AuthScreen extends Component {
   }
 }
 
-export default connect(null, actions)(AuthScreen);
+function mapStateToProps({ auth }) {
+  return { token: auth.token }
+}
+
+export default connect(mapStateToProps, actions)(AuthScreen);
